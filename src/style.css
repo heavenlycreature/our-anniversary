@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+/* 3D and Core Styles (from previous step) */
+.perspective-1500 { perspective: 1500px; }
+.transform-style-3d { transform-style: preserve-3d; backface-visibility: hidden; }
+
+/* Card Animations */
+.card-open-rotate {
+  transform: rotateY(-130deg); 
+  box-shadow: 20px 20px 50px rgba(0,0,0,0.15);
+}
+.card-inside-visible { opacity: 1 !important; }
+.message-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+.untie-bow {
+  opacity: 0;
+  transform: scale(0.5) translateY(20px);
+  pointer-events: none;
+}
+
+/* Float Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-20px) scale(1.05); }
+}
+.animate-float-slow { animation: float 9s ease-in-out infinite; }
+.animate-float-delayed { animation: float 7s ease-in-out infinite 2s; }
+
+/* --- NEW: Photo Stack Animation --- */
+.swipe-out {
+  transform: translateX(120%) rotate(15deg) !important;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow, .animate-float-delayed { animation: none; }
+  .swipe-out { transform: translateX(50%) !important; }
+  .card-open-rotate { transition-duration: 0.1s; }
+}
